@@ -1,0 +1,63 @@
+<!-- SELECT u.username,p.name as project,c.name as category,count(distinct b.id) as bugcount
+            FROM 
+        	mantis_bug_table b, 
+        	mantis_project_table p, 
+        	mantis_user_table u, 
+        	mantis_category_table c
+            WHERE 
+        	p.id = b.project_id
+        	AND b.handler_id = u.id
+        	AND c.id = b.category_id
+        	AND b.last_updated <= 1665694799
+        	AND b.status != 80 AND b.status != 90 GROUP BY u.username,p.name,c.name ORDER BY 1,2,3 -->
+<!-- SELECT u.username,p.name as project,c.name as category,count(distinct b.id) as bugcount
+            FROM 
+        	mantis_bug_table b, 
+        	mantis_project_table p,
+        	mantis_user_table u, 
+        	mantis_bug_history_table h,
+        	mantis_category_table c
+            WHERE 
+        	p.id = b.project_id
+        	AND b.id = h.bug_id
+        	AND u.id = h.user_id
+        	AND c.id = b.category_id
+        	AND h.date_modified <= 1665694799
+        	AND h.date_modified >= 1665003600
+        	AND h.new_value = '80'
+        	AND h.field_name = 'status' GROUP BY u.username,p.name,c.name ORDER BY 1,2,3 -->
+            <html>
+                <head>
+                  <title></title>
+                </head>
+                <body>
+                <center>
+                <a href="http://s122-webdev.solar.com/mantis/main_page.php">mantis</a>
+                <form method="post">
+                <table>
+                <tr>
+                    <td>с: </td>
+                    <td><input type=text name=from size=10 maxlength=10 value="2022-10-06"></td>
+                </tr>
+                <tr>
+                    <td>по: </td>
+                    <td><input type=text name=to size=10 maxlength=10 value="2022-10-13"></td>
+                </tr>
+                <tr>
+                    <td colspan=2><input type=submit name=report value="Показать"></td>
+                </tr>
+                </table>
+                <br>
+                <b>Открытые:</b><table cellpadding=5 cellspacing=1 border=1 style='border-collapse:collapse' align='center'>
+                <tr>
+                    <th>Пользователь</th>
+                    <th>Проект</th>
+                    <th>Сводка</th>
+                </tr><tr><td valign=top rowspan=1>alekseev</td><td>РУСЗН</td><td>задание(2)</td></tr><tr><td valign=top rowspan=1>babykina</td><td>ИС МЦ ТСР</td><td>задание(1)</td></tr><tr><td valign=top rowspan=1>savchenko</td><td>РУСЗН</td><td>задание(1)</td></tr></table><BR><b>Решенные:</b><table cellpadding=5 cellspacing=1 border=1 style='border-collapse:collapse' align='center'>
+                <tr>
+                    <th>Пользователь</th>
+                    <th>Проект</th>
+                    <th>Сводка</th>
+                </tr><tr><td valign=top rowspan=2>alekseev</td><td>Опека</td><td>задание(1)</td></tr><tr><td>РУСЗН</td><td>задание(2)</td></tr><tr><td valign=top rowspan=1>babykina</td><td>ИС МЦ ТСР</td><td>задание(1)</td></tr><tr><td valign=top rowspan=2>bukin</td><td>КРИ2014(CSO)</td><td>задание(1)</td></tr><tr><td>РУСЗН</td><td>задание(1)</td></tr><tr><td valign=top rowspan=3>maksimov</td><td>КРИ2014(CSO)</td><td>задание(1)</td></tr><tr><td>Одно окно</td><td>задание(1)</td></tr><tr><td>РУСЗН</td><td>задание(2)</td></tr><tr><td valign=top rowspan=3>soldatenkov</td><td>РУСЗН</td><td>задание(2)</td></tr><tr><td>РУСЗН - НСИ</td><td>задание(6)</td></tr><tr><td>Списки на Сбербанк</td><td>задание(1)</td></tr></table></center>
+                </body>
+                </html>
