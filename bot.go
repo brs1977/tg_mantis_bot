@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
 
 	"golang.org/x/text/encoding/charmap"
 
@@ -45,12 +46,12 @@ func getHtml() string {
 }
 
 func main() {
-	bot, err := tgbotapi.NewBotAPI("5788367491:AAHSc2ARG3m4QwNnAWKdJd9FfcMg51beFwY")
+	bot, err := tgbotapi.NewBotAPI(os.Getenv("TG_TOKEN"))
 	if err != nil {
 		panic(err)
 	}
 
-	bot.Debug = true
+	// bot.Debug = true
 
 	// Create a new UpdateConfig struct with an offset of 0. Offsets are used
 	// to make sure Telegram knows we've handled previous values and we don't
