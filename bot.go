@@ -1,6 +1,6 @@
 package main
 
-// curl -d "from=2022-10-06&to=2022-10-13" -X POST http://129.200.0.18/mantis/mantisreport.php
+// curl -d "from=2022-10-06&to=2022-10-13&report=%CF%EE%EA%E0%E7%E0%F2%FC" -X POST http://129.200.0.18/mantis/mantisreport.php
 
 import (
 	"io/ioutil"
@@ -77,6 +77,10 @@ func main() {
 
 		var text = getHtml()
 		var msgText = parseTable(text)
+
+		if len(msgText) == 0 {
+			msgText = "Нет данных"
+		}
 
 		// Now that we know we've gotten a new message, we can construct a
 		// reply! We'll take the Chat ID and Text from the incoming message
