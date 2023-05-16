@@ -7,11 +7,17 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"time"
 
 	"golang.org/x/text/encoding/charmap"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
+
+const (
+	YYYYMMDD = "2006-01-02"
+)
+
 
 func DecodeWindows1251(ba []uint8) []uint8 {
 	dec := charmap.Windows1251.NewDecoder()
@@ -20,9 +26,13 @@ func DecodeWindows1251(ba []uint8) []uint8 {
 }
 
 func getHtml() string {
+
+	current := time.Now().Format(YYYYMMDD)
+	from :=  time.Now().AddDate(0, 0, -7).Format(YYYYMMDD) // за 7 дней
+
 	data := url.Values{
-		"from":   {"2022-10-06"},
-		"to":     {"2022-10-13"},
+		"from":   {from},
+		"to":     {current},
 		"report": {"%CF%EE%EA%E0%E7%E0%F2%FC"},
 	}
 
